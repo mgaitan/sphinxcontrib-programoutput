@@ -97,7 +97,6 @@ class ProgramOutputDirective(rst.Directive):
 
     def run(self):
         env = self.state.document.settings.env
-
         node = program_output()
         node.line = self.lineno
         node['command'] = self.arguments[0]
@@ -320,7 +319,7 @@ def run_programs(app, doctree):
             # sphinxcontrib.ansi is no longer available on PyPI, so we
             # can't test that. And if we can't test it, we can't
             # support it.
-            new_node = nodes.literal_block(output, output)
+            new_node = node_class(output, output)
             new_node['language'] = node['language']
             node.replace_self(new_node)
 
