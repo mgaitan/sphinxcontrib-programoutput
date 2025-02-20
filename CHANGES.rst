@@ -5,7 +5,9 @@
 0.19 (unreleased)
 =================
 
-- Nothing changed yet.
+- Restore support for ``programoutput_use_ansi`` based on 
+  ``sphinxcontrib.ansi`` extension.
+
 
 
 0.18 (2024-12-06)
