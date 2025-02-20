@@ -260,6 +260,12 @@ def run_programs(app, doctree):
     The program output is retrieved from the cache in
     ``app.env.programoutput_cache``.
     """
+    if app.config.programoutput_use_ansi:
+        # enable ANSI support, if requested by config
+        from sphinxcontrib.ansi import ansi_literal_block
+        node_class = ansi_literal_block
+    else:
+        node_class = nodes.literal_block
 
     cache = app.env.programoutput_cache
 
@@ -333,6 +339,7 @@ def init_cache(app):
 
 
 def setup(app):
+    app.add_config_value('programoutput_use_ansi', False, 'env')
     app.add_config_value('programoutput_prompt_template',
                          '$ {command}\n{output}', 'env')
     app.add_directive('program-output', ProgramOutputDirective)
